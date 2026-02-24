@@ -1,23 +1,29 @@
-
-import './App.css'
+import './App.css';
+import Card from './components/Card'
 
 function App() {
-let titulo = "Bienvenidos a mi App con React y Vite";
   return (
-    <>
-      <h1>{titulo}</h1>
-      <div className="card">
-        <button>
-          Presioname
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+    <section>
+      <h1>Welcome to React</h1>
+      <div className='container-card'>
+        <h2 className='title-card'>Estos son nuestros productos</h2>
+        <Card 
+          title="Ropa 1" 
+          img="https://via.placeholder.com/120?text=Ropa+1" 
+          price={1200} 
+        />
+        <Card 
+          title="Ropa 2" 
+          img="https://via.placeholder.com/120?text=Ropa+2" 
+          price={1500} 
+        />
+        <Card 
+          title="Ropa 3" 
+          img="https://via.placeholder.com/120?text=Ropa+3" 
+          price={1800} 
+        />
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </section>
   )
 }
 
