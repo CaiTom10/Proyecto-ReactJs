@@ -1,0 +1,199 @@
+@use "variables" as v;
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+  animation: overlayFadeIn 0.25s ease;
+}
+
+.modal-card {
+  background-color: #1e1515;
+  border: 1px solid v.$colorsecundario;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 480px;
+  overflow: hidden;
+  animation: cardSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(214, 185, 138, 0.15);
+}
+
+.modal-header {
+  background: linear-gradient(135deg, #2a1f1f 0%, #3b2f2f 100%);
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid rgba(214, 185, 138, 0.3);
+  text-align: center;
+
+  .modal-brand {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.35em;
+    color: v.$colorsecundario;
+    text-transform: uppercase;
+  }
+}
+
+.modal-body {
+  padding: 2.5rem 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+
+  .modal-checkmark {
+    width: 64px;
+    height: 64px;
+    color: v.$colorsecundario;
+    animation: checkPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s both;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: v.$colorprincipal;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .modal-buyer {
+    font-size: 1rem;
+    color: v.$colorprincipal;
+    margin: 0;
+
+    strong {
+      color: v.$colorsecundario;
+    }
+  }
+
+  .modal-summary {
+    font-size: 1rem;
+    color: #ccc;
+    margin: 0;
+    line-height: 1.6;
+
+    strong {
+      color: v.$colorsecundario;
+    }
+  }
+
+  .modal-note {
+    font-size: 0.9rem;
+    color: #999;
+    margin: 0.5rem 0 0;
+    line-height: 1.6;
+  }
+
+  .modal-order-id {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 1rem;
+    padding: 0.9rem 1.5rem;
+    background-color: rgba(214, 185, 138, 0.08);
+    border: 1px solid rgba(214, 185, 138, 0.25);
+    border-radius: 8px;
+    width: 100%;
+
+    .order-id-label {
+      font-size: 0.78rem;
+      color: #999;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .order-id-value {
+      font-size: 0.82rem;
+      color: v.$colorsecundario;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      word-break: break-all;
+      text-align: center;
+      font-family: monospace;
+    }
+  }
+}
+
+.modal-footer {
+  padding: 1.5rem 2rem 2rem;
+
+  .btn-modal-home {
+    width: 100%;
+    padding: 1rem 2rem;
+    background-color: v.$colorsecundario;
+    color: v.$colorbg;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: v.$colorprincipal;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(214, 185, 138, 0.35);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}
+
+@keyframes overlayFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes cardSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes checkPop {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@include v.mobile {
+  .modal-card {
+    border-radius: 12px;
+  }
+
+  .modal-body {
+    padding: 2rem 1.5rem 1rem;
+
+    h2 {
+      font-size: 1.4rem;
+    }
+  }
+
+  .modal-footer {
+    padding: 1rem 1.5rem 1.5rem;
+  }
+}

@@ -1,0 +1,49 @@
+@use "variables" as v;
+@use "animaciones";
+
+footer{
+    display: flex;
+    height: 150px;
+    padding: 15px;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 2px solid v.$colorprincipal;
+    nav{
+        display: flex;
+        justify-content: flex-end;
+        ul{
+            display: flex;
+            list-style: none;
+            padding: 10px;
+            a{
+                display: flex;  
+                padding: 0px 10px 0px 10px;
+                text-decoration: none;
+            }
+        }
+    }
+    .logos, .logo-whatsapp{
+        display: flex;
+        width: auto;
+        height: 75px;
+    }
+    .logo-whatsapp{
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        @extend %vibrar;
+    }
+}
+
+@include v.mobile {
+    footer{
+        flex-direction: column;
+        h2{
+            font-size: large;
+        }
+        .logos, .logo-whatsapp{
+            height: 50px;
+            width: auto;
+        }
+    }
+}                

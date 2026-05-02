@@ -1,0 +1,66 @@
+@use "variables" as v;
+
+.main-index {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding: 2rem;
+
+    .section-carousel {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        .carousel {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .img-carousel {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+    }
+
+    .texto-intro {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        max-width: 900px;
+        margin: 0 auto;
+        width: 100%;
+
+        p {
+            color: v.$colorprincipal;
+            font-size: 1.1rem;
+            line-height: 1.75;
+            font-weight: 300;
+            letter-spacing: 0.3px;
+        }
+    }
+}
+
+@include v.mobile {
+    .main-index {
+        gap: 2rem;
+        padding: 1rem;
+
+        .section-carousel {
+            .img-carousel {
+                height: 300px;
+            }
+        }
+
+        .texto-intro {
+            gap: 1rem;
+
+            p {
+                font-size: 1rem;
+                line-height: 1.6;
+            }
+        }
+    }
+}

@@ -1,0 +1,333 @@
+@use "variables" as v;
+
+.cart-main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 70vh;
+  padding: 3rem 2rem;
+}
+
+.cart-container {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  h1 {
+    font-size: 2rem;
+    color: v.$colorprincipal;
+    text-align: center;
+    margin: 0;
+  }
+}
+
+// ── Empty state ──────────────────────────────────────────
+.empty-cart {
+  text-align: center;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+
+  p {
+    font-size: 1.2rem;
+    color: v.$colorprincipal;
+    margin: 0;
+  }
+
+  .btn-continue-shopping {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: v.$colorsecundario;
+    color: v.$colorbg;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: v.$colorprincipal;
+      transform: translateY(-2px);
+    }
+  }
+}
+
+// ── Item list ─────────────────────────────────────────────
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 1fr 140px 150px 100px;
+  gap: 1.5rem;
+  align-items: center;
+  background-color: #2a2a2a;
+  padding: 1.25rem 1.5rem;
+  border-radius: 12px;
+  border-left: 4px solid v.$colorsecundario;
+
+  .item-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+
+    h3 {
+      font-size: 1.05rem;
+      color: v.$colorprincipal;
+      margin: 0;
+    }
+
+    .item-marca {
+      font-size: 0.85rem;
+      color: #999;
+      margin: 0;
+    }
+
+    .item-price {
+      font-size: 1rem;
+      color: v.$colorsecundario;
+      font-weight: 600;
+      margin: 0;
+    }
+  }
+
+  .item-quantity {
+    text-align: center;
+    color: v.$colorprincipal;
+    font-size: 0.9rem;
+  }
+
+  .item-subtotal {
+    text-align: center;
+
+    .subtotal-label {
+      font-size: 0.8rem;
+      color: #888;
+      margin: 0 0 0.2rem;
+    }
+
+    .subtotal-price {
+      font-size: 1.15rem;
+      color: v.$colorsecundario;
+      font-weight: 700;
+      margin: 0;
+    }
+  }
+
+  .btn-remove {
+    padding: 0.6rem 1rem;
+    background-color: #d32f2f;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+
+    &:hover {
+      background-color: #b71c1c;
+      transform: scale(1.05);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+}
+
+// ── Total bar ─────────────────────────────────────────────
+.cart-total-bar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background-color: #2a2a2a;
+  border-radius: 10px;
+  border-top: 2px solid v.$colorsecundario;
+
+  .total-label {
+    font-size: 1.1rem;
+    color: v.$colorprincipal;
+    font-weight: 500;
+  }
+
+  .total-amount {
+    font-size: 1.75rem;
+    color: v.$colorsecundario;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+}
+
+// ── Checkout form ─────────────────────────────────────────
+.checkout-form {
+  background-color: #2a2a2a;
+  border-radius: 14px;
+  padding: 2rem;
+  border: 1px solid rgba(214, 185, 138, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.checkout-title {
+  font-size: 1.3rem;
+  color: v.$colorsecundario;
+  font-weight: 600;
+  margin: 0;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(244, 235, 208, 0.1);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: v.$colorprincipal;
+    letter-spacing: 0.02em;
+  }
+
+  input {
+    padding: 0.85rem 1rem;
+    background-color: #1e1515;
+    border: 1.5px solid rgba(214, 185, 138, 0.3);
+    border-radius: 8px;
+    color: v.$colorprincipal;
+    font-size: 1rem;
+    font-family: v.$fuente;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+
+    &::placeholder {
+      color: #666;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: v.$colorsecundario;
+      box-shadow: 0 0 0 3px rgba(214, 185, 138, 0.15);
+    }
+  }
+
+  &.has-error input {
+    border-color: #d32f2f;
+    box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.15);
+  }
+
+  .field-error {
+    font-size: 0.82rem;
+    color: #ef5350;
+    margin: 0;
+  }
+}
+
+// ── Form actions ──────────────────────────────────────────
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding-top: 0.5rem;
+
+  button,
+  a {
+    display: block;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: v.$fuente;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .btn-checkout {
+    background-color: #4caf50;
+    color: white;
+
+    &:hover {
+      background-color: #388e3c;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  .btn-clear-cart {
+    background-color: transparent;
+    color: #ff9800;
+    border: 1.5px solid #ff9800;
+
+    &:hover {
+      background-color: rgba(255, 152, 0, 0.1);
+    }
+  }
+
+  .btn-continue {
+    background-color: transparent;
+    color: v.$colorsecundario;
+    border: 1.5px solid v.$colorsecundario;
+
+    &:hover {
+      background-color: rgba(214, 185, 138, 0.1);
+    }
+  }
+}
+
+// ── Responsive ────────────────────────────────────────────
+@include v.mobile {
+  .cart-main {
+    padding: 2rem 1rem;
+  }
+
+  .cart-item {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+
+    .item-quantity,
+    .item-subtotal {
+      text-align: left;
+    }
+
+    .btn-remove {
+      width: 100%;
+    }
+  }
+
+  .cart-total-bar {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.25rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .checkout-form {
+    padding: 1.5rem 1rem;
+  }
+}

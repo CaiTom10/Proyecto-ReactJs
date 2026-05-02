@@ -1,0 +1,66 @@
+@use "variables" as v;
+
+header{
+    display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    justify-content: space-around;
+    align-items: center;
+    background-color: v.$colorbg;
+    font-size: larger;
+    .container-fluid{
+        gap: 10vw;
+    }
+    .header-logo{
+        width: 190px;
+        height: auto;
+    }
+    .navbar-nav{    
+        display: flex;
+        list-style: none;
+        border: 2px solid v.$colorprincipal;
+        border-radius: 20px;
+        gap: 20px;
+        padding: 0 20px;
+        .nav-link{
+            display: block;
+            padding: 30px 20px;
+            color: v.$colorprincipal;
+            text-decoration: none;
+        }
+    }
+}
+
+@include v.mobile {
+    header{
+        flex-direction: column;
+        justify-content: center;
+        position: static;
+        .header-logo{
+            height: 100px;
+            width: auto;
+        }
+        h1{
+            display: none;
+        }
+        .header-menu{
+            width: 90vw;
+            .navbar-toggler, .navbar-toggler-icon{
+            background-color: v.$colorsecundario;
+            }
+        }
+        .container-fluid{
+        gap: 0;
+        }
+        .navbar-nav{
+            flex-direction: column;
+            align-items: center;
+            padding: 0 0;
+            gap: 0;
+            .nav-link{
+                padding: 5px;
+            }
+        }
+    }
+}

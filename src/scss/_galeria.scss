@@ -1,0 +1,98 @@
+@use "variables" as v;
+@use "animaciones";
+
+/* Galería principal */
+.galeria {
+    margin: 0 auto;
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1.2fr; /* 3 columnas con la del medio un poco más ancha */
+    gap: 2rem;
+    article {
+        border-radius: 12px;
+        overflow: hidden;
+        padding: 0.5rem;
+    }
+  /* Contenedor con 4 imágenes: grid 2x2 */
+    .imagenes-galeria-1 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: minmax(160px, 1fr);
+        gap: 0.9rem;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* mantiene proporción sin deformar */
+            display: block;
+            @extend %img-galeria;
+        }
+    }
+  /* Imagen grande destacada */
+    .imagenes-galeria-2 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem;
+        img {
+            width: 100%;
+            max-height: 600px; /* controla altura en desktop */
+            object-fit: cover;
+            border-radius: 10px;
+        }
+    }
+  /* Video responsivo */
+    .video-galeria {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem;
+    /* iframe responsivo usando aspect-ratio */
+        .video1 {
+            width: 100%;
+            height: 80%;
+            aspect-ratio: 16 / 9;
+            border: 0;
+            border-radius: 10px;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+        }
+    }
+}
+
+/* RESPONSIVE */
+/* 2 columnas medianas */
+@include v.laptop{
+    .galeria {
+        grid-template-columns: 1fr 1fr; /* la galería con 4 imágenes + la imagen grande en 2 columnas */
+        grid-auto-rows: auto;
+        .video-galeria {
+            grid-column: 1 / -1; /* video ocupa fila completa debajo */
+        }
+        .imagenes-galeria-2 {
+            max-height: 520px;
+        }
+    }
+}
+
+/* Mobile: apilado */
+@include v.mobile{
+    .galeria {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1rem;
+        article {
+            padding: 0;
+            box-shadow: none; /* opcional para limpieza en mobile */
+        }
+        .imagenes-galeria-1 {
+            grid-template-columns: 1fr 1fr; /* mantiene 2 columnas dentro */
+            grid-auto-rows: 140px;
+            gap: 0.6rem;
+        }
+        .imagenes-galeria-2 img {
+            max-height: 360px;
+        }
+        .video-galeria .video1 {
+            aspect-ratio: 16 / 9;
+        }
+    }
+}

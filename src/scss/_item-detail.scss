@@ -1,0 +1,153 @@
+@use "variables" as v;
+
+.item-detail-loading {
+  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: v.$colorprincipal;
+  font-size: 1.1rem;
+}
+
+.item-detail-wrapper {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+}
+
+.item-detail-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  max-width: 1100px;
+  width: 100%;
+  background: linear-gradient(135deg, #2a1f1f 0%, #1e1515 100%);
+  border: 1px solid rgba(214, 185, 138, 0.2);
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
+}
+
+// --- Columna izquierda ---
+
+.item-detail-image-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item-detail-image {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  display: block;
+}
+
+// --- Columna derecha ---
+
+.item-detail-info-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.item-detail-categoria {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: v.$colorsecundario;
+  font-weight: 600;
+  margin: 0;
+}
+
+.item-detail-nombre {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: v.$colorprincipal;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.item-detail-marca-modelo {
+  font-size: 1rem;
+  color: rgba(244, 235, 208, 0.6);
+  font-weight: 400;
+  margin: 0;
+  letter-spacing: 0.04em;
+}
+
+.item-detail-description {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: rgba(244, 235, 208, 0.72);
+  margin: 0.5rem 0;
+  border-left: 3px solid rgba(214, 185, 138, 0.4);
+  padding-left: 1rem;
+}
+
+.item-detail-precio-block {
+  margin: 0.5rem 0;
+}
+
+.item-detail-precio {
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: v.$colorsecundario;
+  letter-spacing: -1px;
+}
+
+.item-detail-count {
+  margin-top: 0.5rem;
+}
+
+.item-detail-back {
+  display: inline-block;
+  margin-top: 1.2rem;
+  font-size: 0.9rem;
+  color: rgba(214, 185, 138, 0.7);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  font-weight: 500;
+  font-family: inherit;
+  text-align: left;
+
+  &:hover {
+    color: v.$colorsecundario;
+  }
+}
+
+// --- Responsive ---
+
+@media (max-width: 768px) {
+  .item-detail-card {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2rem 1.5rem;
+  }
+
+  .item-detail-nombre {
+    font-size: 1.5rem;
+  }
+
+  .item-detail-precio {
+    font-size: 2rem;
+  }
+}
+
+@include v.mobile {
+  .item-detail-wrapper {
+    padding: 1.5rem 1rem;
+  }
+
+  .item-detail-card {
+    padding: 1.5rem 1rem;
+  }
+}
