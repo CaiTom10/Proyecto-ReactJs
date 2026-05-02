@@ -9,8 +9,11 @@ header{
     align-items: center;
     background-color: v.$colorbg;
     font-size: larger;
+    width: 100%;
+    overflow-x: hidden;
     .container-fluid{
         gap: 10vw;
+        max-width: 100%;
     }
     .header-logo{
         width: 190px;
@@ -37,27 +40,34 @@ header{
         flex-direction: column;
         justify-content: center;
         position: static;
+        width: 100%;
+        max-width: 100vw;
+        overflow-x: hidden;
         .header-logo{
             height: 100px;
             width: auto;
+            max-width: 80vw;
         }
         h1{
             display: none;
         }
         .header-menu{
             width: 90vw;
+            max-width: 90vw;
             .navbar-toggler, .navbar-toggler-icon{
             background-color: v.$colorsecundario;
             }
         }
         .container-fluid{
-        gap: 0;
+            gap: 0;
+            width: 100%;
         }
         .navbar-nav{
             flex-direction: column;
             align-items: center;
-            padding: 0 0;
+            padding: 0;
             gap: 0;
+            width: 100%;
             .nav-link{
                 padding: 5px;
             }

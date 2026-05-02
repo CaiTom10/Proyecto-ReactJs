@@ -29,6 +29,15 @@ export function CartProvider({ children }) {
     );
   };
 
+  const actualizarCantidad = (id, nuevaCantidad) => {
+    if (nuevaCantidad < 1) return;
+    setCartItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === id ? { ...item, cantidad: nuevaCantidad } : item
+      )
+    );
+  };
+
   const clearCart = () => {
     setCartItems([]);
   };
@@ -50,6 +59,7 @@ export function CartProvider({ children }) {
         cartItems,
         addItem,
         removeItem,
+        actualizarCantidad,
         clearCart,
         getTotalItems,
         getTotalPrice,

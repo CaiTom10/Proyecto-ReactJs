@@ -98,9 +98,45 @@
   }
 
   .item-quantity {
-    text-align: center;
-    color: v.$colorprincipal;
-    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    .btn-qty {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: transparent;
+      border: 1.5px solid rgba(214, 185, 138, 0.45);
+      border-radius: 6px;
+      color: v.$colorsecundario;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+      line-height: 1;
+
+      &:hover:not(:disabled) {
+        background-color: rgba(214, 185, 138, 0.15);
+        border-color: v.$colorsecundario;
+      }
+
+      &:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+      }
+    }
+
+    .qty-value {
+      min-width: 28px;
+      text-align: center;
+      color: v.$colorprincipal;
+      font-size: 1rem;
+      font-weight: 600;
+    }
   }
 
   .item-subtotal {
@@ -296,8 +332,8 @@
   }
 }
 
-// ── Responsive ────────────────────────────────────────────
-@include v.mobile {
+// ── Responsive 768px ─────────────────────────────────────
+@media (max-width: 768px) {
   .cart-main {
     padding: 2rem 1rem;
   }
@@ -306,7 +342,10 @@
     grid-template-columns: 1fr;
     gap: 0.75rem;
 
-    .item-quantity,
+    .item-quantity {
+      justify-content: flex-start;
+    }
+
     .item-subtotal {
       text-align: left;
     }
@@ -329,5 +368,20 @@
 
   .checkout-form {
     padding: 1.5rem 1rem;
+  }
+}
+
+// ── Responsive mobile (@mixin mobile) ────────────────────
+@include v.mobile {
+  .cart-main {
+    padding: 1.5rem 0.75rem;
+  }
+
+  .cart-container h1 {
+    font-size: 1.5rem;
+  }
+
+  .cart-item {
+    padding: 1rem;
   }
 }

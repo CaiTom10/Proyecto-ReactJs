@@ -10,7 +10,7 @@ const EMPTY_FORM = { nombre: '', telefono: '', email: '', emailConfirm: '' };
 const EMPTY_ERRORS = { nombre: '', telefono: '', email: '', emailConfirm: '' };
 
 export default function Cart() {
-  const { cartItems, removeItem, clearCart, getTotalPrice } = useContext(CartContext);
+  const { cartItems, removeItem, actualizarCantidad, clearCart, getTotalPrice } = useContext(CartContext);
   const [form, setForm] = useState(EMPTY_FORM);
   const [errors, setErrors] = useState(EMPTY_ERRORS);
   const [orderData, setOrderData] = useState(null);
@@ -126,7 +126,19 @@ export default function Cart() {
                   <p className="item-price">${item.precio}</p>
                 </div>
                 <div className="item-quantity">
-                  <span>Cantidad: {item.cantidad}</span>
+                  <button
+                    className="btn-qty"
+                    onClick={() => actualizarCantidad(item.id, item.cantidad - 1)}
+                    disabled={item.cantidad <= 1}
+                    aria-label="Reducir cantidad"
+                  >−</button>
+                  <span className="qty-value">{item.cantidad}</span>
+                  <button
+                    className="btn-qty"
+                    onClick={() => actualizarCantidad(item.id, item.cantidad + 1)}
+                    disabled={item.stock != null && item.cantidad >= item.stock}
+                    aria-label="Aumentar cantidad"
+                  >+</button>
                 </div>
                 <div className="item-subtotal">
                   <p className="subtotal-label">Subtotal:</p>
