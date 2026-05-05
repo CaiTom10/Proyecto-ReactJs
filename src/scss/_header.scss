@@ -36,39 +36,154 @@ header{
 }
 
 @include v.mobile {
-    header{
+    header {
         flex-direction: column;
         justify-content: center;
         position: static;
         width: 100%;
         max-width: 100vw;
         overflow-x: hidden;
-        .header-logo{
+        
+        .header-logo {
             height: 100px;
             width: auto;
             max-width: 80vw;
         }
-        h1{
+        
+        h1 {
             display: none;
         }
-        .header-menu{
+        
+        .header-menu {
             width: 90vw;
             max-width: 90vw;
-            .navbar-toggler, .navbar-toggler-icon{
-            background-color: v.$colorsecundario;
+            .navbar-toggler, .navbar-toggler-icon {
+                background-color: v.$colorsecundario;
             }
         }
-        .container-fluid{
+        
+        .container-fluid {
             gap: 0;
             width: 100%;
+            
+            /* --- INICIO DEL TRUCO FLEXBOX --- */
+            display: flex;
+            flex-wrap: wrap; /* Para que el menú colapsable baje */
+            align-items: center;
+
+            .navbar-toggler {
+                order: 1;
+                margin-right: auto !important; /* Empuja el logo al centro */
+            }
+
+            .navbar-brand {
+                order: 2;
+                margin: 0 !important;
+            }
+
+            /* Por si en algún momento decides mostrar el h1 en móviles */
+            h1 {
+                order: 3;
+            }
+
+            .cart-widget {
+                order: 4;
+                margin-left: auto !important; /* Empuja el logo al centro */
+            }
+
+            .navbar-collapse {
+                order: 5;
+                width: 100%; /* Obliga al menú a ocupar toda la línea de abajo */
+            }
+            /* --- FIN DEL TRUCO FLEXBOX --- */
         }
-        .navbar-nav{
+        
+        .navbar-nav {
             flex-direction: column;
             align-items: center;
             padding: 0;
             gap: 0;
             width: 100%;
-            .nav-link{
+            .nav-link {
+                padding: 5px;
+            }
+        }
+    }
+}
+
+@include v.laptop {
+    header {
+        flex-direction: column;
+        justify-content: center;
+        position: static;
+        width: 100%;
+        max-width: 100vw;
+        overflow-x: hidden;
+        
+        .header-logo {
+            height: 100px; /* Puedes agrandarlo un poco aquí si quieres */
+            width: auto;
+        }
+        
+        /* --- LA GRAN DIFERENCIA CON MOBILE --- */
+        h1 {
+            display: block; /* Hacemos visible el título */
+            margin: 0 0 0 15px !important; /* Le damos 15px de separación a la izquierda para que no se pegue al logo */
+            font-size: 1.8rem; /* Puedes ajustar el tamaño a tu gusto */
+            /* color: v.$colorprimario; Si necesitas forzar el color, puedes usar tu variable aquí */
+        }
+        /* ------------------------------------- */
+
+        .header-menu {
+            width: 90vw;
+            max-width: 90vw;
+            .navbar-toggler, .navbar-toggler-icon {
+                background-color: v.$colorsecundario;
+            }
+        }
+        
+        .container-fluid {
+            gap: 0;
+            width: 100%;
+            
+            /* Mantenemos el truco Flexbox */
+            display: flex;
+            flex-wrap: wrap; 
+            align-items: center;
+
+            .navbar-toggler {
+                order: 1;
+                margin-right: auto !important; /* Empuja el grupo (logo+título) hacia la derecha */
+            }
+
+            .navbar-brand {
+                order: 2;
+                margin: 0 !important;
+            }
+
+            h1 {
+                order: 3; /* Se coloca naturalmente a la derecha del logo */
+            }
+
+            .cart-widget {
+                order: 4;
+                margin-left: auto !important; /* Empuja el grupo (logo+título) hacia la izquierda */
+            }
+
+            .navbar-collapse {
+                order: 5;
+                width: 100%;
+            }
+        }
+        
+        .navbar-nav {
+            /* Si en laptop también quieres que el menú desplegable sea vertical, dejamos esto igual */
+            flex-direction: column;
+            align-items: center;
+            padding: 0;
+            gap: 0;
+            width: 100%;
+            .nav-link {
                 padding: 5px;
             }
         }
